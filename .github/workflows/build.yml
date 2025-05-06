@@ -20,7 +20,16 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew assembleDebug
+
+      - name: Sign APK with debug keystore
+        run: |
+          keytool -genkey -v -keystore debug.keystore -storepass android -keypass android \
+            -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          apksigner sign --ks debug.keystore --ks-key-alias androiddebugkey \
+            --ks-pass pass:android --key-pass pass:android \
+            --out app/build/outputs/apk/debug/app-debug-signed.apk \
+            app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload build outputs
         uses: actions/upload-artifact@v3
