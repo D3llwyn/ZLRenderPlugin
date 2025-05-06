@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ZLRenderPlugin"
 include(":app", ":ltw")
-project(":ltw").projectDir = file ("libs/LTW")
+project(":ltw").projectDir = file ("libs/LTW/ltw")
