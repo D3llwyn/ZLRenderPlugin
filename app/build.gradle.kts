@@ -32,6 +32,7 @@ android {
             signingConfig = signingConfigs.getByName("customDebug")
               }
         }
+}
         configureEach {
             resValue("string","app_name","Test Renderer")
             applicationIdSuffix = ".testrender"
